@@ -11,7 +11,7 @@ public class ConvertNumberToText {
         }else if (number<1000){
             int x = number/100;
             int y = number-100*x;
-            stingOutput=convertNumber1(x)+" hundred and "+convertNumber3(y);
+            stingOutput=convertNumber1(x)+" hundred " + ((convertNumber3(y)=="")?"":" and ")+convertNumber3(y);
         }else {
             stingOutput="out of ability";
         }
@@ -52,7 +52,7 @@ public class ConvertNumberToText {
                 str="ten";
                 break;
             default:
-                str="out of ability";
+                str="";
                 break;
         }
         return str;
@@ -102,7 +102,19 @@ public class ConvertNumberToText {
         }else if (x<100) {
             int a = x / 10;
             int b = x - 10 * a;
-            str = convertNumber1(a) + "ty " + convertNumber1(b);
+            switch (a){
+                case 2:
+                    str = "twenty" + convertNumber1(b);
+                    break;
+                case 3:
+                    str = "thirty" + convertNumber1(b);
+                    break;
+                case 5:
+                    str = "fifty" + convertNumber1(b);
+                    break;
+                default:
+                    str = convertNumber1(a) + "ty " + convertNumber1(b);
+            }
         }
         return str;
     }
